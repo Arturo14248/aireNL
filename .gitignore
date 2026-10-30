@@ -1,2 +1,5 @@
 airenl
 .env
+.pre-commit-config.yaml
+requirements.txt
+pyproject.toml
