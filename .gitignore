@@ -3,3 +3,11 @@ airenl
 .pre-commit-config.yaml
 pyproject.toml
 *.egg-info
+# Airflow runtime output
+orchestration/logs/**
+!orchestration/logs/.gitkeep
+orchestration/config/airflow.cfg
+# Python cache
+orchestration/dags/__pycache__/
+# VS Code metadata and settings
+.vscode
