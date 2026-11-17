@@ -1,13 +1,27 @@
-airenl
+# Secrets (only .env.example is committed)
 .env
-.pre-commit-config.yaml
-pyproject.toml
-*.egg-info
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
 # Airflow runtime output
 orchestration/logs/**
 !orchestration/logs/.gitkeep
 orchestration/config/airflow.cfg
-# Python cache
-orchestration/dags/__pycache__/
-# VS Code metadata and settings
-.vscode
+
+# Local landing zone written by the ingestion DAGs
+data/
+
+# Editor / OS
+.vscode/
+.DS_Store
