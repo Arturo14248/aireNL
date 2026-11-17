@@ -7,7 +7,7 @@ from openaq import OpenAQ
 load_dotenv()
 
 # Access the variables
-api_key = os.getenv("API_KEY")
+api_key = os.getenv("OPENAQ_API_KEY")
 
 client = OpenAQ(api_key=api_key)
 

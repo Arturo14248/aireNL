@@ -7,14 +7,18 @@ from openaq import OpenAQ
 load_dotenv()
 
 # Access the variables
-api_key = os.getenv("API_KEY")
+api_key = os.getenv("OPENAQ_API_KEY")
 
 
 client = OpenAQ(api_key=api_key)
 
 try:
     response = client.measurements.list(
-        sensors_id=13088900, data="days", rollup="yearly", limit=100
+        sensors_id=14189968,
+        data="days",
+        limit=100,
+        date_from="2026-11-01",
+        date_to="2026-11-16",
     )
 
     print(f"Measurements found: {response.meta.found}\n")

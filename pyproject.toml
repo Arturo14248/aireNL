@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airenl"
+version = "0.1.0"
+description = "AireNL: air-quality data platform for the Monterrey metro area"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "confluent-kafka>=2.16.1",
+    "httpx>=0.28.1",
+    "openaq",
+    "pyarrow>=25.0.1",
+    "pydantic>=2.14.2",
+    "python-dotenv",
+    "s3fs>=2026.9.0",
+]
+
+[dependency-groups]
+airflow = [
+    "apache-airflow-providers-apache-kafka>=2.0.0",
+]
+dev = [
+    "pre-commit",
+    "ruff",
+    "pytest",
+    "mypy",
+    "pendulum>=3.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ingestion*"]
+exclude = ["ingestion.tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["ingestion/tests"]
+
+[tool.uv]
+python-preference = "only-managed"

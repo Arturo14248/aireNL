@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "Measurement",
+  "namespace": "mx.airenl.aq",
+  "doc": "One pollutant reading from one sensor. Published to aq.measurements.raw, keyed by station_id. Kept field-for-field aligned with ingestion/models.py.",
+  "fields": [
+    {"name": "station_id", "type": "string", "doc": "Source-prefixed station id, e.g. openaq-4408711."},
+    {"name": "sensor_id", "type": "string", "doc": "Source-prefixed sensor id, e.g. openaq-13051191."},
+    {"name": "parameter", "type": "string", "doc": "Pollutant code: pm25, pm10, o3, no2, so2, co, ..."},
+    {"name": "value", "type": ["null", "double"], "default": null, "doc": "Reading as reported by the source. Null is allowed so silver can reject it with a reason."},
+    {"name": "unit", "type": "string", "doc": "ASCII unit as reported by the source (ug/m3, ppm, ppb). No conversion happens at ingestion."},
+    {"name": "measured_at", "type": {"type": "long", "logicalType": "timestamp-micros"}, "doc": "End of the averaging period, UTC (hour-ending convention)."},
+    {"name": "source", "type": "string", "doc": "openaq | sinaica | simulator | <partner>"},
+    {"name": "period_start", "type": ["null", {"type": "long", "logicalType": "timestamp-micros"}], "default": null, "doc": "Start of the averaging period, UTC."},
+    {"name": "coverage_pct", "type": ["null", "double"], "default": null, "doc": "Percent of expected raw samples present in the period, as reported by the source."},
+    {"name": "ingested_at", "type": ["null", {"type": "long", "logicalType": "timestamp-micros"}], "default": null, "doc": "When the ingestion task built this record, UTC."}
+  ]
+}
